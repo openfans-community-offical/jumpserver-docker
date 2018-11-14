@@ -4,12 +4,16 @@ WORKDIR /opt
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN set -ex \
-    && echo 'deb http://mirrors.163.com/ubuntu/ xenial main' > /etc/apt/sources.list \
-    && echo 'deb http://mirrors.163.com/ubuntu/ xenial-updates main' >> /etc/apt/sources.list \
+    && echo 'deb http://mirrors.163.com/ubuntu/ xenial main restricted' > /etc/apt/sources.list \
+    && echo 'deb http://mirrors.163.com/ubuntu/ xenial-updates main restricted' >> /etc/apt/sources.list \
     && echo 'deb http://mirrors.163.com/ubuntu/ xenial universe' >> /etc/apt/sources.list \
     && echo 'deb http://mirrors.163.com/ubuntu/ xenial-updates universe' >> /etc/apt/sources.list \
-    && echo 'deb http://mirrors.163.com/ubuntu/ xenial-security main' >> /etc/apt/sources.list \
-    && echo 'deb http://mirrors.163.com/ubuntu/ xenial-security universe' >> /etc/apt/sources.list 
+    && echo 'deb http://mirrors.163.com/ubuntu/ xenial multiverse' >> /etc/apt/sources.list \
+    && echo 'deb http://mirrors.163.com/ubuntu/ xenial-updates multiverse' >> /etc/apt/sources.list \
+    && echo 'deb http://mirrors.163.com/ubuntu/ xenial-backports main restricted universe multiverse' >> /etc/apt/sources.list \
+    && echo 'deb http://mirrors.163.com/ubuntu/ xenial-security main restricted' >> /etc/apt/sources.list \
+    && echo 'deb http://mirrors.163.com/ubuntu/ xenial-security universe' >> /etc/apt/sources.list \
+    && echo 'deb http://mirrors.163.com/ubuntu/ xenial-security multiverse' >> /etc/apt/sources.list 
 
 RUN set -ex \
     && apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends apt-utils software-properties-common \
